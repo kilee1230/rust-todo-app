@@ -778,6 +778,7 @@ name = "rust-todo-app"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "log",
  "pretty_env_logger",
  "serde",
  "tokio",

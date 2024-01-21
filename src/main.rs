@@ -1,3 +1,7 @@
+extern crate pretty_env_logger;
+#[macro_use]
+extern crate log;
+
 mod handler;
 mod model;
 mod response;
@@ -60,8 +64,13 @@ async fn main() {
         .or(todo_routes_id)
         .or(health_checker);
 
-    println!("🚀 Server started successfully");
-    warp::serve(routes).run(([0, 0, 0, 0], 8000)).await;
+    let server_port = 8000;
+
+    info!(
+        "🚀 Server running at http://{}:{}",
+        "localhost", server_port
+    );
+    warp::serve(routes).run(([0, 0, 0, 0], server_port)).await;
 }
 
 fn with_db(db: DB) -> impl Filter<Extract = (DB,), Error = std::convert::Infallible> + Clone {
