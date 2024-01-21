@@ -1,7 +1,7 @@
-start:
+run:
 	cargo run
 
-start-dev:
+run-dev:
 	cargo watch -q -c -w src/ -x run
 
 build:
