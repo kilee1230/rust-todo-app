@@ -23,7 +23,7 @@ async fn main() {
     let todo_router = warp::path!("api" / "todos");
     let todo_router_id = warp::path!("api" / "todos" / String);
 
-    let health_checker = warp::path!("api" / "healthchecker")
+    let health_checker = warp::path!("api" / "health")
         .and(warp::get())
         .and_then(handler::health_check_handler);
 
@@ -70,6 +70,7 @@ async fn main() {
         "🚀 Server running at http://{}:{}",
         "localhost", server_port
     );
+
     warp::serve(routes).run(([0, 0, 0, 0], server_port)).await;
 }
 

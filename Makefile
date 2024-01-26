@@ -1,8 +1,15 @@
+.PHONY: run
 run:
 	cargo run
 
+.PHONY: run-dev
 run-dev:
-	cargo watch -q -c -w src/ -x run
+	RUST_LOG=info cargo watch -q -c -w src/ -x run
 
-build:
-	cargo build
+.PHONY: build
+build: clean
+	cargo build --release
+
+.PHONY: clean
+clean:
+	rm -rf ./target/release
